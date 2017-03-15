@@ -1,4 +1,6 @@
 # distplay
+![distplay](/img/display.png?raw=true)
+
 Controller input display specifically designed for Distance. Made this
 because I couldn't find any Linux controller input displays. I pretty
 much made this only for myself, so I made no attempt to make this
