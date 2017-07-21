@@ -38,6 +38,35 @@
              font-size: 95.5%;
          }
 
+         .bumper
+         {
+             width: 90px;
+             height: 20px;
+             text-align: center;
+             vertical-align: middle;
+             font-size: 95.5%;
+         }
+
+         .facebutton
+         {
+             width: 25px;
+             /* height: 30px; */
+             padding: 5px 0px 5px 0px;
+             text-align: center;
+             vertical-align: middle;
+             font-size: 95.5%;
+             border-radius: 20px;
+         }
+
+         .dpadbutton
+         {
+             width: 25px;
+             height: 25px;
+             text-align: center;
+             vertical-align: middle;
+             font-size: 95.5%;
+         }
+
          .unpressed
          {
              background: #252525;
@@ -49,6 +78,12 @@
              background: #6E6E6E;
              color: white;
          }
+
+         .pressedstick
+         {
+             background: white;
+             color: white;
+         }
         </style>
     </head>
     <body>
@@ -57,126 +92,234 @@
 
          window.onload = function WindowLoad(event) {
              var win = remote.getCurrentWindow();
-             win.setSize(345, 95)
+             win.setSize(355, 150)
              loop();
          }
 
          function loop() {
-             jump = document.getElementById('jump');
-             grip = document.getElementById('grip');
-             reset = document.getElementById('reset');
-             boost = document.getElementById('boost');
-             brake = document.getElementById('brake');
-             accel = document.getElementById('accel');
+             rt = document.getElementById('rt');
+             lt = document.getElementById('lt');
+             rb = document.getElementById('rb');
+             lb = document.getElementById('lb');
+             a = document.getElementById('a');
+             b = document.getElementById('b');
+             x = document.getElementById('x');
+             y = document.getElementById('y');
+             dup = document.getElementById('dup');
+             ddown = document.getElementById('ddown');
+             dleft = document.getElementById('dleft');
+             dright = document.getElementById('dright');
              ls = document.getElementById('ls');
              rs = document.getElementById('rs');
+             start = document.getElementById('start');
+             select = document.getElementById('select');
 
              var gamepads = navigator.getGamepads()
              if (gamepads[0] != undefined) {
                  var gp = gamepads[0];
 
-                 if (gp.buttons[2].pressed)
-                 {
-                     jump.className = "pressed button";
-                 }
+                 if (gp.buttons[0].pressed)
+                     {
+                         a.className = "pressed facebutton";
+                     }
                  else
-                 {
-                    jump.className = "unpressed button";
-                 }
+                     {
+                         a.className = "unpressed facebutton";
+                     }
+
+                 if (gp.buttons[1].pressed)
+                     {
+                         b.className = "pressed facebutton";
+                     }
+                 else
+                     {
+                         b.className = "unpressed facebutton";
+                     }
+
+                 if (gp.buttons[2].pressed)
+                     {
+                         x.className = "pressed facebutton";
+                     }
+                 else
+                     {
+                         x.className = "unpressed facebutton";
+                     }
+
+                 if (gp.buttons[3].pressed)
+                     {
+                         y.className = "pressed facebutton";
+                     }
+                 else
+                     {
+                         y.className = "unpressed facebutton";
+                     }
 
                  if (gp.buttons[4].pressed)
-                 {
-                     grip.className = "pressed button";
-                 }
+                     {
+                         lb.className = "pressed bumper";
+                     }
                  else
-                 {
-                     grip.className = "unpressed button";
-                 }
-
-                 if (gp.buttons[6].pressed)
-                 {
-                     reset.className = "pressed button";
-                 }
-                 else
-                 {
-                     reset.className = "unpressed button";
-                 }
+                     {
+                         lb.className = "unpressed bumper";
+                     }
 
                  if (gp.buttons[5].pressed)
-                 {
-                     boost.className = "pressed button";
-                 }
+                     {
+                         rb.className = "pressed bumper";
+                     }
                  else
-                 {
-                     boost.className = "unpressed button";
-                 }
+                     {
+                         rb.className = "unpressed bumper";
+                     }
+
+                 if (gp.buttons[6].pressed)
+                     {
+                         select.className = "pressed bumper";
+                     }
+                 else
+                     {
+                         select.className = "unpressed bumper";
+                     }
+
+                 if (gp.buttons[7].pressed)
+                     {
+                         start.className = "pressed bumper";
+                     }
+                 else
+                     {
+                         start.className = "unpressed bumper";
+                     }
+
+                 if (gp.buttons[9].pressed)
+                     {
+                         ls.className = "stick pressedstick";
+                     }
+                 else
+                     {
+                         ls.className = "stick";
+                     }
+
+                 if (gp.buttons[10].pressed)
+                     {
+                         rs.className = "stick pressedstick";
+                     }
+                 else
+                     {
+                         rs.className = "stick";
+                     }
 
                  if (gp.axes[5] > -1)
-                 {
-                     accel.className = "pressed button";
-                 }
+                     {
+                         rt.className = "pressed button";
+                     }
                  else
-                 {
-                     accel.className = "unpressed button";
-                 }
+                     {
+                         rt.className = "unpressed button";
+                     }
 
                  if (gp.axes[2] > -1)
-                 {
-                     brake.className = "pressed button";
-                 }
+                     {
+                         lt.className = "pressed button";
+                     }
                  else
-                 {
-                     brake.className = "unpressed button";
-                 }
+                     {
+                         lt.className = "unpressed button";
+                     }
 
                  if (gp.axes[0] > 0)
-                 {
-                     ls.style.left = 23 + (gp.axes[0] * 18) + 'px'
-                 }
+                     {
+                         ls.style.left = 23 + (gp.axes[0] * 18) + 'px'
+                     }
                  else if (gp.axes[0] < 0)
-                 {
-                     ls.style.left = 23 + (gp.axes[0] * 18) + 'px'
-                 }
+                     {
+                         ls.style.left = 23 + (gp.axes[0] * 18) + 'px'
+                     }
                  if (gp.axes[1] > 0)
-                 {
-                     ls.style.top = 20 + (gp.axes[1] * 18) + 'px'
-                 }
+                     {
+                         ls.style.top = 52 + (gp.axes[1] * 18) + 'px'
+                     }
                  else if (gp.axes[1] < 0)
-                 {
-                     ls.style.top = 20 + (gp.axes[1] * 18) + 'px'
-                 }
+                     {
+                         ls.style.top = 52 + (gp.axes[1] * 18) + 'px'
+                     }
 
                  if (gp.axes[3] > 0)
-                 {
-                     rs.style.left = 268 + (gp.axes[3] * 18) + 'px'
-                 }
+                     {
+                         rs.style.left = 278 + (gp.axes[3] * 18) + 'px'
+                     }
                  else if (gp.axes[3] < 0)
-                 {
-                     rs.style.left = 268 + (gp.axes[3] * 18) + 'px'
-                 }
+                     {
+                         rs.style.left = 278 + (gp.axes[3] * 18) + 'px'
+                     }
                  if (gp.axes[4] > 0)
-                 {
-                     rs.style.top = 20 + (gp.axes[4] * 18) + 'px'
-                 }
+                     {
+                         rs.style.top = 52 + (gp.axes[4] * 18) + 'px'
+                     }
                  else if (gp.axes[4] < 0)
-                 {
-                     rs.style.top = 20 + (gp.axes[4] * 18) + 'px'
-                 }
+                     {
+                         rs.style.top = 52 + (gp.axes[4] * 18) + 'px'
+                     }
+
+                 if (gp.axes[7] < 0)
+                     {
+                         dup.className = "pressed dpadbutton"
+                         ddown.className = "unpressed dpadbutton"
+                     }
+                 else if (gp.axes[7] > 0)
+                     {
+                         dup.className = "unpressed dpadbutton"
+                         ddown.className = "pressed dpadbutton"
+                     }
+                 else
+                     {
+                         dup.className = "unpressed dpadbutton"
+                         ddown.className = "unpressed dpadbutton"
+                     }
+
+                 if (gp.axes[6] < 0)
+                     {
+                         dleft.className = "pressed dpadbutton"
+                         dright.className = "unpressed dpadbutton"
+                     }
+                 else if (gp.axes[6] > 0)
+                     {
+                         dleft.className = "unpressed dpadbutton"
+                         dright.className = "pressed dpadbutton"
+                     }
+                 else
+                     {
+                         dleft.className = "unpressed dpadbutton"
+                         dright.className = "unpressed dpadbutton"
+                     }
              }
 
              start = requestAnimationFrame(loop);
          }
         </script>
 
-        <div class="stickback" style="position: absolute; top: 8px; left: 10px"></div>
-        <div id="ls" class="stick" style="position: absolute; top: 20px; left: 23px"></div>
-        <div id="brake" class="unpressed button" style="position: absolute; top: 12px; left: 100px">BRAKE</div>
-        <div id="grip" class="unpressed button" style="position: absolute; top: 37px; left: 100px">GRIP</div>
-        <div id="reset" class="unpressed button" style="position: absolute; top: 62px; left: 100px">RESET</div>
-        <div id="accel" class="unpressed button" style="position: absolute; top: 12px; left: 175px">ACCEL</div>
-        <div id="boost" class="unpressed button" style="position: absolute; top: 37px; left: 175px">BOOST</div>
-        <div id="jump" class="unpressed button" style="position: absolute; top: 62px; left: 175px">JUMP</div>
-        <div class="stickback" style="position: absolute; top: 8px; left: 255px"></div>
-        <div id="rs" class="stick" style="position: absolute; top: 20px; left: 268px"></div>
+        <!-- Sticks -->
+        <div class="stickback" style="position: absolute; top: 40px; left: 10px"></div>
+        <div id="ls" class="stick" style="position: absolute; top: 52px; left: 23px"></div>
+        <div class="stickback" style="position: absolute; top: 40px; left: 265px"></div>
+        <div id="rs" class="stick" style="position: absolute; top: 52px; left: 278px"></div>
+        <!-- Bumpers and triggers -->
+        <div id="lt" class="unpressed button" style="position: absolute; top: 12px; left: 10px">LT</div>
+        <div id="rt" class="unpressed button" style="position: absolute; top: 12px; left: 275px">RT</div>
+        <div id="lb" class="unpressed bumper" style="position: absolute; top: 12px; left: 85px">LB</div>
+        <div id="rb" class="unpressed bumper" style="position: absolute; top: 12px; left: 180px">RB</div>
+        <!-- Dpad -->
+        <div id="dup" class="unpressed dpadbutton" style="position: absolute; top: 40px; left: 125px"></div>
+        <div id="dleft" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 100px"></div>
+        <div id="dright" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 150px"></div>
+        <div id="ddown" class="unpressed dpadbutton" style="position: absolute; top: 89px; left: 125px"></div>
+        <div id="dcenter" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 125px"></div>
+        <!-- Face buttons  -->
+        <div id="y" class="unpressed facebutton" style="position: absolute; top: 40px; left: 210px">Y</div>
+        <div id="x" class="unpressed facebutton" style="position: absolute; top: 64px; left: 185px">X</div>
+        <div id="b" class="unpressed facebutton" style="position: absolute; top: 64px; left: 235px">B</div>
+        <div id="a" class="unpressed facebutton" style="position: absolute; top: 89px; left: 210px">A</div>
+        <!-- Misc buttons -->
+        <div id="select" class="unpressed bumper" style="position: absolute; top: 120px; left: 85px">&lt;</div>
+        <div id="start" class="unpressed bumper" style="position: absolute; top: 120px; left: 180px">&gt;</div>
     </body>
 </html>

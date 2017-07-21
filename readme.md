@@ -1,18 +1,27 @@
 # distplay
-![distplay](/img/display.png?raw=true)
+![distplay](/img/distplay.png?raw=true)
 
-Controller input display specifically designed for Distance. Made this
-because I couldn't find any Linux controller input displays. I pretty
-much made this only for myself, so I made no attempt to make this
-universally compatible with every system ever. It works for me,
-but it may not work for you - the HTML5 Gamepad API is kind of
-inconsistent. It should technically "work" on any system,
+A basic controller input display. Made this because I couldn't find any
+Linux controller input displays. I pretty much made this only for myself,
+so I made no attempt to make this universally compatible with every system
+ever. It works for me, but it may not work for you - the HTML5 Gamepad API
+is kind of inconsistent. It should technically "work" on any system,
 but it might not work *properly*.
 
-## Using the Display
-Run the display using Electron:
+This input was previously exlusively designed to work with Distance, but
+I decided to make it work for anything with an Xbox controller layout.
 
-`electron path/to/distplay.html`
+The Distance version is still available though.
+
+![distplay-distance](/img/distplay-distabce.png?raw=true)
+
+## Using the Display
+Because I have no idea how to package an Electron app and I'm
+too lazy to learn, run the display with Electron manually:
+
+`electron ./distplay.html`
+
+(or `electron ./distplay-distance.html` for the Distance version)
 
 Add a window capture source in OBS to capture the display's window, and
 set the colour transparency key to black.
@@ -23,18 +32,29 @@ window size, and also the require statement required to do that,
 otherwise you'll get errors.
   
 ## Display mapping
-The display is mapped by default as:
+The display for the display mapped by default as:
 
-| Display     | Button        | JS               |
-| ----------  | ------------- | ---------------  |
-| Left Stick  | Left Stick    | axes[0], axes[1] |
-| Right Stick | Right Stick   | axes[3], axes[5] |
-| Accelerate  | Right Trigger | axes[5]          |
-| Brake       | Left Trigger  | axes[2]          |
-| Boost       | Right Bumper  | buttons[5]       |
-| Grip        | Left Bumper   | buttons[4]       |
-| Reset       | Back          | buttons[6]       |
-| Jump        | X             | buttons[2]       |
+| Button           | JS               |
+| ---------------- | ---------------  |
+| A                | buttons[0]       |
+| B                | buttons[1]       |
+| X                | buttons[2]       |
+| Y                | buttons[3]       |
+| Left Bumper      | buttons[4]       |
+| Right Bumper     | buttons[5]       |
+| Back/Select      | buttons[6]       |
+| Forward/Start    | buttons[7]       |
+| LS Click         | buttons[9]       |
+| RS Click         | buttons[10]      |
+| LS Vertical      | axes[0]          |
+| LS Horizontal    | axes[0]          |
+| Right Stick      | axes[3], axes[5] |
+| Right Trigger    | axes[5]          |
+| DPad Vertical    | axes[7]          |
+| DPad Horizontal  | axes[2]          |
+
+The Distance display is set up to reflect the default bindings
+for the game, albliet with a right stick.
 
 Because the HTML5 Gamepad API is inconsistent between different
 browsers and operating systems and I made no attempt to make things
