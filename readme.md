@@ -13,7 +13,7 @@ I decided to make it work for anything with an Xbox controller layout.
 
 The Distance version is still available though.
 
-![distplay-distance](/img/distplay-distabce.png?raw=true)
+![distplay-distance](/img/distplay-distance.png?raw=true)
 
 ## Using the Display
 Because I have no idea how to package an Electron app and I'm
