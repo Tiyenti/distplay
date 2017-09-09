@@ -172,7 +172,7 @@
                          rb.className = "unpressed bumper";
                      }
 
-                 if (gp.buttons[6].pressed)
+                 if (gp.buttons[8].pressed)
                      {
                          select.className = "pressed bumper";
                      }
@@ -181,7 +181,7 @@
                          select.className = "unpressed bumper";
                      }
 
-                 if (gp.buttons[7].pressed)
+                 if (gp.buttons[9].pressed)
                      {
                          start.className = "pressed bumper";
                      }
@@ -190,7 +190,7 @@
                          start.className = "unpressed bumper";
                      }
 
-                 if (gp.buttons[9].pressed)
+                 if (gp.buttons[10].pressed)
                      {
                          ls.className = "stick pressedstick";
                      }
@@ -199,7 +199,7 @@
                          ls.className = "stick";
                      }
 
-                 if (gp.buttons[10].pressed)
+                 if (gp.buttons[11].pressed)
                      {
                          rs.className = "stick pressedstick";
                      }
@@ -208,7 +208,7 @@
                          rs.className = "stick";
                      }
 
-                 if (gp.axes[5] > -1)
+                 if (gp.buttons[7].pressed)
                      {
                          rt.className = "pressed button";
                      }
@@ -217,7 +217,7 @@
                          rt.className = "unpressed button";
                      }
 
-                 if (gp.axes[2] > -1)
+                 if (gp.buttons[6].pressed)
                      {
                          lt.className = "pressed button";
                      }
@@ -243,29 +243,29 @@
                          ls.style.top = 52 + (gp.axes[1] * 18) + 'px'
                      }
 
+                 if (gp.axes[2] > 0)
+                     {
+                         rs.style.left = 278 + (gp.axes[2] * 18) + 'px'
+                     }
+                 else if (gp.axes[2] < 0)
+                     {
+                         rs.style.left = 278 + (gp.axes[2] * 18) + 'px'
+                     }
                  if (gp.axes[3] > 0)
                      {
-                         rs.style.left = 278 + (gp.axes[3] * 18) + 'px'
+                         rs.style.top = 52 + (gp.axes[3] * 18) + 'px'
                      }
                  else if (gp.axes[3] < 0)
                      {
-                         rs.style.left = 278 + (gp.axes[3] * 18) + 'px'
-                     }
-                 if (gp.axes[4] > 0)
-                     {
-                         rs.style.top = 52 + (gp.axes[4] * 18) + 'px'
-                     }
-                 else if (gp.axes[4] < 0)
-                     {
-                         rs.style.top = 52 + (gp.axes[4] * 18) + 'px'
+                         rs.style.top = 52 + (gp.axes[3] * 18) + 'px'
                      }
 
-                 if (gp.axes[7] < 0)
+                 if (gp.buttons[12].pressed)
                      {
                          dup.className = "pressed dpadbutton"
                          ddown.className = "unpressed dpadbutton"
                      }
-                 else if (gp.axes[7] > 0)
+                 else if (gp.buttons[13].pressed)
                      {
                          dup.className = "unpressed dpadbutton"
                          ddown.className = "pressed dpadbutton"
@@ -276,12 +276,12 @@
                          ddown.className = "unpressed dpadbutton"
                      }
 
-                 if (gp.axes[6] < 0)
+                 if (gp.buttons[14].pressed)
                      {
                          dleft.className = "pressed dpadbutton"
                          dright.className = "unpressed dpadbutton"
                      }
-                 else if (gp.axes[6] > 0)
+                 else if (gp.buttons[15].pressed)
                      {
                          dleft.className = "unpressed dpadbutton"
                          dright.className = "pressed dpadbutton"
