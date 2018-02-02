@@ -26,12 +26,9 @@
             background: #6E6E6E;
         }
 
-        .stickback {
+        .stick.back {
             width: 80px;
             height: 80px;
-            -webkit-border-radius: 100px;
-            -moz-border-radius: 100px;
-            border-radius: 100px;
             background: #252525;
         }
 
@@ -63,7 +60,7 @@
             background: #6E6E6E;
         }
 
-        .pressedstick {
+        .pressed.stick {
             background: white;
         }
     </style>
@@ -164,14 +161,14 @@
                 }
 
                 if (gp.buttons[10].pressed) {
-                    ls.className = "stick pressedstick";
+                    ls.className = "stick pressed";
                 }
                 else {
                     ls.className = "stick";
                 }
 
                 if (gp.buttons[11].pressed) {
-                    rs.className = "stick pressedstick";
+                    rs.className = "stick pressed";
                 }
                 else {
                     rs.className = "stick";
@@ -250,9 +247,9 @@
     </script>
 
     <!-- Sticks -->
-    <div class="stickback" style="position: absolute; top: 40px; left: 10px"></div>
+    <div class="stick back" style="position: absolute; top: 40px; left: 10px"></div>
     <div id="ls" class="stick" style="position: absolute; top: 52px; left: 23px"></div>
-    <div class="stickback" style="position: absolute; top: 40px; left: 265px"></div>
+    <div class="stick back" style="position: absolute; top: 40px; left: 265px"></div>
     <div id="rs" class="stick" style="position: absolute; top: 52px; left: 278px"></div>
     <!-- Triggers -->
     <div id="ltback" class="unpressed trigger" style="position: absolute; top: 12px; left: 5px"></div>
