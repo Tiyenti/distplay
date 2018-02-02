@@ -172,17 +172,18 @@
                 }
 
                 if (gp.buttons[7].pressed) {
-                    rt.className = "pressed button";
+                    rt.style.width = gp.buttons[7].value * 90 + 'px';
                 }
                 else {
-                    rt.className = "unpressed button";
+                    rt.style.width = "0";
                 }
 
                 if (gp.buttons[6].pressed) {
-                    lt.className = "pressed button";
+                    lt.style.width = gp.buttons[6].value * 90 + 'px';
+                    lt.style.left = (95 - gp.buttons[6].value * 90) + 'px';
                 }
                 else {
-                    lt.className = "unpressed button";
+                    lt.style.width = "0";
                 }
 
                 if (gp.axes[0] > 0) {
@@ -247,9 +248,14 @@
     <div id="ls" class="stick" style="position: absolute; top: 52px; left: 23px"></div>
     <div class="stickback" style="position: absolute; top: 40px; left: 265px"></div>
     <div id="rs" class="stick" style="position: absolute; top: 52px; left: 278px"></div>
-    <!-- Bumpers and triggers -->
-    <div id="lt" class="unpressed button" style="position: absolute; top: 12px; left: 5px">LT</div>
-    <div id="rt" class="unpressed button" style="position: absolute; top: 12px; left: 260px">RT</div>
+    <!-- Triggers -->
+    <div id="ltback" class="unpressed button" style="position: absolute; top: 12px; left: 5px"></div>
+    <div id="lt" class="pressed button" style="position: absolute; top: 12px; left: 5px; width: 0"></div>
+    <div id="lttext" class="button" style="position: absolute; top: 12px; left: 5px">LT</div>
+    <div id="rtback" class="unpressed button" style="position: absolute; top: 12px; left: 260px"></div>
+    <div id="rt" class="pressed button" style="position: absolute; top: 12px; left: 260px; width: 0"></div>
+    <div id="rttext" class="button" style="position: absolute; top: 12px; left: 260px">RT</div>
+    <!-- Bumpers -->
     <div id="lb" class="unpressed bumper" style="position: absolute; top: 12px; left: 100px">LB</div>
     <div id="rb" class="unpressed bumper" style="position: absolute; top: 12px; left: 180px">RB</div>
     <!-- Dpad -->
