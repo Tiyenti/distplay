@@ -26,10 +26,9 @@ too lazy to learn, run the display with Electron manually:
 Add a window capture source in OBS to capture the display's window, and
 set the colour transparency key to black.
 
-You can run this in a web browser instead of using Electron, though
-you'll have to modify the script to remove the stuff that sets the
-window size, and also the require statement required to do that,
-otherwise you'll get errors.
+You can also open distplay[-distance].html in a browser and use window
+capture as described above, alternatively use a BrowserCapture source in
+OBS and the default style rule it injects will handle transparency for you.
   
 ## Display mapping
 The display for the display mapped by default as:
@@ -43,7 +42,7 @@ The display for the display mapped by default as:
 | Left Bumper      | buttons[4]      |
 | Right Bumper     | buttons[5]      |
 | Right Trigger    | buttons[7]      |
-| Left Trigger     | buttons[6]       |
+| Left Trigger     | buttons[6]      |
 | Back/Select      | buttons[8]      |
 | Forward/Start    | buttons[9]      |
 | LS Click         | buttons[10]     |

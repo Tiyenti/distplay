@@ -53,11 +53,17 @@
     </head>
     <body>
         <script>
-         const remote = require('electron').remote;
-
          window.onload = function WindowLoad(event) {
-             var win = remote.getCurrentWindow();
-             win.setSize(345, 95)
+             if (typeof(require) === "function") {
+                 try {
+                     const remote = require('electron').remote;
+                     var win = remote.getCurrentWindow();
+                     win.setSize(345, 95);
+                 } catch (e) {
+                     //not critical if this fails, just log and continue.
+                     console.log(e);
+                 }
+             }
              loop();
          }
 
