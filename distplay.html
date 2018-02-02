@@ -18,8 +18,8 @@
         }
 
         .stick {
-            width: 55px;
-            height: 55px;
+            width: 54px;
+            height: 54px;
             -webkit-border-radius: 100px;
             -moz-border-radius: 100px;
             border-radius: 100px;
@@ -43,7 +43,7 @@
         .facebutton {
             width: 25px;
             height: 17px;
-            padding: 5px 0px 5px 0px;
+            padding: 4px 0px;
             border-radius: 20px;
         }
 
@@ -73,7 +73,7 @@
                 try {
                     const remote = require('electron').remote;
                     var win = remote.getCurrentWindow();
-                    win.setSize(355, 150);
+                    win.setSize(355, 145);
                 } catch (e) {
                     //not critical if this fails, just log and continue.
                     console.log(e);
@@ -83,6 +83,10 @@
         }
 
         function loop() {
+            const PADDING = 5;
+            const TRIGGER_WIDTH = 90;
+            const STICK_TRAVEL = 18;
+
             rt = document.getElementById('rt');
             lt = document.getElementById('lt');
             rb = document.getElementById('rb');
@@ -175,45 +179,24 @@
                 }
 
                 if (gp.buttons[7].pressed) {
-                    rt.style.width = gp.buttons[7].value * 90 + 'px';
+                    rt.style.width = gp.buttons[7].value * TRIGGER_WIDTH + 'px';
                 }
                 else {
                     rt.style.width = "0";
                 }
 
+                lt.style.left = PADDING + (1 - gp.buttons[6].value) * TRIGGER_WIDTH + 'px';
                 if (gp.buttons[6].pressed) {
-                    lt.style.width = gp.buttons[6].value * 90 + 'px';
-                    lt.style.left = (95 - gp.buttons[6].value * 90) + 'px';
+                    lt.style.width = gp.buttons[6].value * TRIGGER_WIDTH + 'px';
                 }
                 else {
                     lt.style.width = "0";
                 }
 
-                if (gp.axes[0] > 0) {
-                    ls.style.left = 23 + (gp.axes[0] * 18) + 'px'
-                }
-                else if (gp.axes[0] < 0) {
-                    ls.style.left = 23 + (gp.axes[0] * 18) + 'px'
-                }
-                if (gp.axes[1] > 0) {
-                    ls.style.top = 52 + (gp.axes[1] * 18) + 'px'
-                }
-                else if (gp.axes[1] < 0) {
-                    ls.style.top = 52 + (gp.axes[1] * 18) + 'px'
-                }
-
-                if (gp.axes[2] > 0) {
-                    rs.style.left = 278 + (gp.axes[2] * 18) + 'px'
-                }
-                else if (gp.axes[2] < 0) {
-                    rs.style.left = 278 + (gp.axes[2] * 18) + 'px'
-                }
-                if (gp.axes[3] > 0) {
-                    rs.style.top = 52 + (gp.axes[3] * 18) + 'px'
-                }
-                else if (gp.axes[3] < 0) {
-                    rs.style.top = 52 + (gp.axes[3] * 18) + 'px'
-                }
+                ls.style.left = PADDING + (gp.axes[0] + 1) * STICK_TRAVEL + 'px'
+                ls.style.top = 30 + PADDING + (gp.axes[1] + 1) * STICK_TRAVEL + 'px'
+                rs.style.left = 255 + PADDING + (gp.axes[2] + 1) * STICK_TRAVEL + 'px'
+                rs.style.top = 30 + PADDING + (gp.axes[3] + 1) * STICK_TRAVEL + 'px'
 
                 if (gp.buttons[12].pressed) {
                     dup.className = "pressed dpadbutton"
@@ -248,30 +231,30 @@
 
     <!-- Sticks -->
     <div class="stick back" style="position: absolute; top: 40px; left: 10px"></div>
-    <div id="ls" class="stick" style="position: absolute; top: 52px; left: 23px"></div>
+    <div id="ls" class="stick" style="position: absolute; top: 53px; left: 23px"></div>
     <div class="stick back" style="position: absolute; top: 40px; left: 265px"></div>
-    <div id="rs" class="stick" style="position: absolute; top: 52px; left: 278px"></div>
+    <div id="rs" class="stick" style="position: absolute; top: 53px; left: 278px"></div>
     <!-- Triggers -->
-    <div id="ltback" class="unpressed trigger" style="position: absolute; top: 12px; left: 5px"></div>
-    <div id="lt" class="pressed trigger" style="position: absolute; top: 12px; left: 5px; width: 0"></div>
-    <div id="lttext" class="trigger" style="position: absolute; top: 12px; left: 5px">LT</div>
-    <div id="rtback" class="unpressed trigger" style="position: absolute; top: 12px; left: 260px"></div>
-    <div id="rt" class="pressed trigger" style="position: absolute; top: 12px; left: 260px; width: 0"></div>
-    <div id="rttext" class="trigger" style="position: absolute; top: 12px; left: 260px">RT</div>
+    <div id="ltback" class="unpressed trigger" style="position: absolute; top: 5px; left: 5px"></div>
+    <div id="lt" class="pressed trigger" style="position: absolute; top: 5px; left: 5px; width: 0"></div>
+    <div id="lttext" class="trigger" style="position: absolute; top: 5px; left: 5px">LT</div>
+    <div id="rtback" class="unpressed trigger" style="position: absolute; top: 5px; left: 260px"></div>
+    <div id="rt" class="pressed trigger" style="position: absolute; top: 5px; left: 260px; width: 0"></div>
+    <div id="rttext" class="trigger" style="position: absolute; top: 5px; left: 260px">RT</div>
     <!-- Bumpers -->
-    <div id="lb" class="unpressed bumper" style="position: absolute; top: 12px; left: 100px">LB</div>
-    <div id="rb" class="unpressed bumper" style="position: absolute; top: 12px; left: 180px">RB</div>
+    <div id="lb" class="unpressed bumper" style="position: absolute; top: 5px; left: 100px">LB</div>
+    <div id="rb" class="unpressed bumper" style="position: absolute; top: 5px; left: 180px">RB</div>
     <!-- Dpad -->
-    <div id="dup" class="unpressed dpadbutton" style="position: absolute; top: 40px; left: 125px"></div>
-    <div id="dleft" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 100px"></div>
-    <div id="dright" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 150px"></div>
-    <div id="ddown" class="unpressed dpadbutton" style="position: absolute; top: 89px; left: 125px"></div>
-    <div id="dcenter" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 125px"></div>
+    <div id="dup" class="unpressed dpadbutton" style="position: absolute; top: 35px; left: 125px"></div>
+    <div id="dleft" class="unpressed dpadbutton" style="position: absolute; top: 60px; left: 100px"></div>
+    <div id="dright" class="unpressed dpadbutton" style="position: absolute; top: 60px; left: 150px"></div>
+    <div id="ddown" class="unpressed dpadbutton" style="position: absolute; top: 85px; left: 125px"></div>
+    <div id="dcenter" class="unpressed dpadbutton" style="position: absolute; top: 60px; left: 125px"></div>
     <!-- Face buttons  -->
-    <div id="y" class="unpressed facebutton" style="position: absolute; top: 40px; left: 205px">Y</div>
-    <div id="x" class="unpressed facebutton" style="position: absolute; top: 64px; left: 180px">X</div>
-    <div id="b" class="unpressed facebutton" style="position: absolute; top: 64px; left: 230px">B</div>
-    <div id="a" class="unpressed facebutton" style="position: absolute; top: 89px; left: 205px">A</div>
+    <div id="y" class="unpressed facebutton" style="position: absolute; top: 35px; left: 205px">Y</div>
+    <div id="x" class="unpressed facebutton" style="position: absolute; top: 60px; left: 180px">X</div>
+    <div id="b" class="unpressed facebutton" style="position: absolute; top: 60px; left: 230px">B</div>
+    <div id="a" class="unpressed facebutton" style="position: absolute; top: 85px; left: 205px">A</div>
     <!-- Misc buttons -->
     <div id="select" class="unpressed bumper" style="position: absolute; top: 120px; left: 100px">&lt;</div>
     <div id="start" class="unpressed bumper" style="position: absolute; top: 120px; left: 180px">&gt;</div>
