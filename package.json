@@ -1,0 +1,22 @@
+{
+  "name": "distplay",
+  "version": "0.1.0",
+  "description": "input display",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TntMatthew/distplay.git"
+  },
+  "author": "TntMatthew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TntMatthew/distplay/issues"
+  },
+  "homepage": "https://github.com/TntMatthew/distplay#readme",
+  "devDependencies": {
+    "electron": "1.8.2"
+  }
+}
