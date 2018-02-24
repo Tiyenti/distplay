@@ -1,83 +1,72 @@
 const remote = require("electron").remote;
+const rq = require("electron-require");
+const mappings = rq("./assets/js/util/mappings.json");
+const checkButtons = rq("./assets/js/util/checkButtons.js");
+const Collection = rq("./assets/js/util/Collection.js");
+let config = rq("./assets/js/util/loadConfig.js")();
 
-window.onload = function WindowLoad() {
-	let win = remote.getCurrentWindow();
-	win.setContentSize(345, 95);
-	loop();
-};
+
+
+let map = new Collection();
+
+function checkSticks(axes) {
+	if (axes[0] > 0) {
+		map.find("name", "ls").element.style.left = `${23 + (axes[0] * 18)}px`;
+	} else if (axes[0] < 0) {
+		map.find("name", "ls").element.style.left = `${23 + (axes[0] * 18)}px`;
+	}
+	if (axes[1] > 0) {
+		map.find("name", "ls").element.style.top = `${20 + (axes[1] * 18)}px`;
+	} else if (axes[1] < 0) {
+		map.find("name", "ls").element.style.top = `${20 + (axes[1] * 18)}px`;
+	}
+
+	if (axes[2] > 0) {
+		map.find("name", "rs").element.style.left = `${268 + (axes[2] * 18)}px`;
+	} else if (axes[2] < 0) {
+		map.find("name", "rs").element.style.left = `${268 + (axes[2] * 18)}px`;
+	}
+	if (axes[3] > 0) {
+		map.find("name", "rs").element.style.top = `${20 + (axes[3] * 18)}px`;
+	} else if (axes[3] < 0) {
+		map.find("name", "rs").element.style.top = `${20 + (axes[3] * 18)}px`;
+	}
+}
 
 function loop() {
-	let jump = document.getElementById("jump");
-	let reset = document.getElementById("reset");
-	let grip = document.getElementById("grip");
-	let boost = document.getElementById("boost");
-	let brake = document.getElementById("brake");
-	let accel = document.getElementById("accel");
-	let ls = document.getElementById("ls");
-	let rs = document.getElementById("rs");
-
 	let gamepads = navigator.getGamepads();
 	if (gamepads[0] != undefined) {
 		let gp = gamepads[0];
 
-		if (gp.buttons[2].pressed) {
-			jump.className = "pressed button";
-		} else {
-			jump.className = "unpressed button";
-		}
+		checkButtons(gp.buttons, map);
 
-		if (gp.buttons[4].pressed) {
-			grip.className = "pressed button";
-		} else {
-			grip.className = "unpressed button";
-		}
+		checkSticks(gp.axes);
 
-		if (gp.buttons[6].pressed) {
-			reset.className = "pressed button";
-		} else {
-			reset.className = "unpressed button";
-		}
-
-		if (gp.buttons[5].pressed) {
-			boost.className = "pressed button";
-		} else {
-			boost.className = "unpressed button";
-		}
-
-		if (gp.axes[5] > -1) {
-			accel.className = "pressed button";
-		} else {
-			accel.className = "unpressed button";
-		}
-
-		if (gp.axes[2] > -1) {
-			brake.className = "pressed button";
-		} else {
-			brake.className = "unpressed button";
-		}
-
-		if (gp.axes[0] > 0) {
-			ls.style.left = 23 + (gp.axes[0] * 18) + "px";
-		} else if (gp.axes[0] < 0) {
-			ls.style.left = 23 + (gp.axes[0] * 18) + "px";
-		}
-		if (gp.axes[1] > 0) {
-			ls.style.top = 20 + (gp.axes[1] * 18) + "px";
-		} else if (gp.axes[1] < 0) {
-			ls.style.top = 20 + (gp.axes[1] * 18) + "px";
-		}
-
-		if (gp.axes[2] > 0) {
-			rs.style.left = 268 + (gp.axes[3] * 18) + "px";
-		} else if (gp.axes[3] < 0) {
-			rs.style.left = 268 + (gp.axes[3] * 18) + "px";
-		}
-		if (gp.axes[3] > 0) {
-			rs.style.top = 20 + (gp.axes[4] * 18) + "px";
-		} else if (gp.axes[4] < 0) {
-			rs.style.top = 20 + (gp.axes[4] * 18) + "px";
-		}
 	}
 
 	window.requestAnimationFrame(loop);
 }
+
+window.onload = function WindowLoad() {
+	let win = remote.getCurrentWindow();
+	win.setContentSize(345, 95);
+	let allIDs = document.querySelectorAll("*[id]");
+
+	for (let elt of allIDs) {
+		let index;
+		if (elt.id.match(/^ls|rs$/i)) {
+			index = mappings[elt.id];
+		} else {
+			index = mappings[config.Bindings[elt.id]];
+		}
+		let obj = {
+			"id": index,
+			"name": elt.id,
+			"button": (config.Bindings[elt.id]) ? config.Bindings[elt.id] : elt.id,
+			"element": elt
+		};
+		map.set(index, obj);
+	}
+
+	window.requestAnimationFrame(loop);
+};
