@@ -53,7 +53,8 @@ distplay-linux-x64
 distplay-win32-ia32
 distplay-win32-x64
 distplay-darwin-x64
-packaged
+build
+dist
 
 # Other
 .eslintrc.json
