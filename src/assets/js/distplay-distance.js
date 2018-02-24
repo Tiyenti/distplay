@@ -2,7 +2,7 @@ const remote = require("electron").remote;
 
 window.onload = function WindowLoad() {
 	let win = remote.getCurrentWindow();
-	win.setSize(365, 155);
+	win.setContentSize(345, 95);
 	loop();
 };
 
@@ -67,12 +67,12 @@ function loop() {
 			ls.style.top = 20 + (gp.axes[1] * 18) + "px";
 		}
 
-		if (gp.axes[3] > 0) {
+		if (gp.axes[2] > 0) {
 			rs.style.left = 268 + (gp.axes[3] * 18) + "px";
 		} else if (gp.axes[3] < 0) {
 			rs.style.left = 268 + (gp.axes[3] * 18) + "px";
 		}
-		if (gp.axes[4] > 0) {
+		if (gp.axes[3] > 0) {
 			rs.style.top = 20 + (gp.axes[4] * 18) + "px";
 		} else if (gp.axes[4] < 0) {
 			rs.style.top = 20 + (gp.axes[4] * 18) + "px";

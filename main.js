@@ -14,27 +14,24 @@ let win;
 function createWindow() {
 	// Create the browser window.
 	win = new BrowserWindow({
-		width: 370,
-		height: 210
+		// width: 370,
+		// height: 210
+		width: 800,
+		height: 600
 	});
 
 	// and load the index.html of the app.
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, "src/distplay-distance.html"),
+		pathname: path.join(__dirname, "src/distplay.html"),
 		protocol: "file:",
 		slashes: true
 	}));
 
 	// Open the DevTools.
-	//win.webContents.openDevTools();
+	// win.webContents.openDevTools();
 
 	// Emitted when the window is closed.
-	win.on("closed", () => {
-		// Dereference the window object, usually you would store windows
-		// in an array if your app supports multi windows, this is the time
-		// when you should delete the corresponding element.
-		win = null;
-	});
+	win.on("closed", () => win = null);
 
 	let menu = Menu.buildFromTemplate([{
 		label: "Menu",
@@ -52,7 +49,20 @@ function createWindow() {
 		}, {
 			label: "Settings",
 			click() {
-				//TODO: Settings window (background color)
+				const modalPath = url.format({
+					pathname: path.join(__dirname, "src/settings.html"),
+					protocol: "file:",
+					slashes: true
+				});
+				let settingsWindow = new BrowserWindow({
+					alwaysOnTop: true,
+					width: 400,
+					height: 200
+				});
+				settingsWindow.on("closed", () => settingsWindow = null);
+				settingsWindow.loadURL(modalPath);
+				settingsWindow.setMenu(null);
+				settingsWindow.show();
 			}
 		}, {
 			type: "separator"

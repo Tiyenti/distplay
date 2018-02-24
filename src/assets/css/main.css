@@ -1,5 +1,6 @@
 body {
 	background: black;
+	color: white;
 	font-family: sans-serif;
 }
 
@@ -29,12 +30,10 @@ body {
 	font-size: 95.5%;
 }
 
-.unpressed {
+.btnswrapper div {
 	background: #252525;
-	color: white;
 }
 
 .pressed {
-	background: #6E6E6E;
-	color: white;
+	background: #6E6E6E !important;
 }

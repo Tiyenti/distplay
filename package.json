@@ -18,5 +18,8 @@
   "homepage": "https://github.com/TntMatthew/distplay#readme",
   "devDependencies": {
     "electron": "1.8.2"
+  },
+  "dependencies": {
+    "electron-require": "^0.3.0"
   }
 }

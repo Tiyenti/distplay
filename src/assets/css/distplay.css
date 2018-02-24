@@ -24,7 +24,6 @@
 	font-size: 95.5%;
 }
 
-.pressedstick {
-	background: white;
-	color: white;
+.stickpressed {
+	background: white !important;
 }
