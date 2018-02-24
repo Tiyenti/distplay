@@ -5,8 +5,6 @@ const checkButtons = rq("./assets/js/util/checkButtons.js");
 const Collection = rq("./assets/js/util/Collection.js");
 let config = rq("./assets/js/util/loadConfig.js")();
 
-
-
 let map = new Collection();
 
 function checkSticks(axes) {

@@ -7,8 +7,6 @@ rq("./assets/js/util/loadConfig.js")();
 
 let map = new Collection();
 
-
-
 function checkSticks(axes) {
 	if (axes[0] > 0) {
 		map.find("name", "ls").element.style.left = `${23 + (axes[0] * 18)}px`;
