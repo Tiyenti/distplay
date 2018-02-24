@@ -1,5 +1,4 @@
 body {
-	background: black;
 	color: white;
 	font-family: sans-serif;
 }
@@ -36,4 +35,8 @@ body {
 
 .pressed {
 	background: #6E6E6E !important;
+}
+
+.stickpressed {
+	background: white !important;
 }

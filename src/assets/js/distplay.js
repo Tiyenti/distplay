@@ -1,39 +1,13 @@
 const remote = require("electron").remote;
 const rq = require("electron-require");
 const mappings = rq("./assets/js/util/mappings.json");
-
-// const loadJsonFile = require("load-json-file");
-// let mappings = loadJsonFile.sync("src/assets/js/util/mappings.json");
+const checkButtons = rq("./assets/js/util/checkButtons.js");
 const Collection = rq("./assets/js/util/Collection.js");
+rq("./assets/js/util/loadConfig.js")();
 
 let map = new Collection();
 
-function checkPressed(buttons) {
-	for (let i = 0; i < 16; i++) {
-		let ele = map.get(i);
-		if (buttons[i].pressed) {
-			if (ele.name.match(/^ls|rs$/i)) {
-				ele.element.classList.add("stickpressed");
-			} else {
-				ele.element.classList.add("pressed");
-			}
-			// --- Check dpad opposites ---
-			if (i === 12) {
-				map.find("name", "ddown").element.classList.remove("pressed");
-			} else if (i === 13) {
-				map.find("name", "dup").element.classList.remove("pressed");
-			} else if (i === 14) {
-				map.find("name", "dright").element.classList.remove("pressed");
-			} else if (i === 15) {
-				map.find("name", "dleft").element.classList.remove("pressed");
-			}
-			// ------
-		} else {
-			ele.element.classList.remove("pressed");
-			ele.element.classList.remove("stickpressed");
-		}
-	}
-}
+
 
 function checkSticks(axes) {
 	if (axes[0] > 0) {
@@ -63,7 +37,7 @@ function loop() {
 	let gamepads = navigator.getGamepads();
 	if (gamepads[0] != undefined) {
 		let gp = gamepads[0];
-		checkPressed(gp.buttons);
+		checkButtons(gp.buttons, map, true);
 		checkSticks(gp.axes);
 	}
 	window.requestAnimationFrame(loop);
@@ -84,6 +58,6 @@ window.onload = function WindowLoad() {
 		map.set(index, obj);
 	}
 
-	console.log(map);
+	//console.log(map);
 	window.requestAnimationFrame(loop);
 };

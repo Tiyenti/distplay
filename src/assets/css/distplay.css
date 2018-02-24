@@ -1,3 +1,15 @@
+* {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body {
+	cursor: default;
+}
+
 .bumper {
 	width: 90px;
 	height: 20px;
@@ -22,8 +34,4 @@
 	text-align: center;
 	vertical-align: middle;
 	font-size: 95.5%;
-}
-
-.stickpressed {
-	background: white !important;
 }
