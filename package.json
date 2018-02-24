@@ -1,0 +1,37 @@
+{
+  "name": "distplay",
+  "version": "0.2.0",
+  "description": "input display",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "build --dir",
+    "pack:win32": "electron-packager ./ --platform=win32 --arch=ia32 --overwrite --ignore=build --out=dist --icon=build/icon.ico",
+    "pack:win64": "electron-packager ./ --platform=win32 --arch=x64 --overwrite --ignore=build --out=dist --icon=build/icon.ico",
+    "pack:linux": "electron-packager ./ --platform=linux --arch=x64 --overwrite --ignore=build --out=dist --icon=build/icon.png",
+    "build": "npm run pack:win32 && npm run pack:win64 && npm run pack:linux"
+  },
+  "build": {
+    "appId": "com.distplay.app",
+    "productName": "Distplay"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TntMatthew/distplay.git"
+  },
+  "author": "TntMatthew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TntMatthew/distplay/issues"
+  },
+  "homepage": "https://github.com/TntMatthew/distplay#readme",
+  "devDependencies": {
+    "electron": "1.8.2",
+    "electron-builder": "^20.1.1",
+    "electron-packager": "^11.0.1"
+  },
+  "dependencies": {
+    "electron-require": "^0.3.0",
+    "ini": "^1.3.5"
+  }
+}

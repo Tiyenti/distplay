@@ -1,0 +1,42 @@
+body {
+	color: white;
+	font-family: sans-serif;
+}
+
+.stick {
+	width: 55px;
+	height: 55px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+	background: #6E6E6E;
+}
+
+.stickback {
+	width: 80px;
+	height: 80px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	border-radius: 100px;
+	background: #252525;
+}
+
+.button {
+	width: 70px;
+	height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	font-size: 95.5%;
+}
+
+.btnswrapper div {
+	background: #252525;
+}
+
+.pressed {
+	background: #6E6E6E !important;
+}
+
+.stickpressed {
+	background: white !important;
+}
