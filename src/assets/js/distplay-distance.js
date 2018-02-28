@@ -1,47 +1,19 @@
 const remote = require("electron").remote;
 const rq = require("electron-require");
 const mappings = rq("./assets/js/util/mappings.json");
-const checkButtons = rq("./assets/js/util/checkButtons.js");
+const check = rq("./assets/js/util/check.js");
 const Collection = rq("./assets/js/util/Collection.js");
 let config = rq("./assets/js/util/loadConfig.js")();
 
 let map = new Collection();
 
-function checkSticks(axes) {
-	if (axes[0] > 0) {
-		map.find("name", "ls").element.style.left = `${23 + (axes[0] * 18)}px`;
-	} else if (axes[0] < 0) {
-		map.find("name", "ls").element.style.left = `${23 + (axes[0] * 18)}px`;
-	}
-	if (axes[1] > 0) {
-		map.find("name", "ls").element.style.top = `${20 + (axes[1] * 18)}px`;
-	} else if (axes[1] < 0) {
-		map.find("name", "ls").element.style.top = `${20 + (axes[1] * 18)}px`;
-	}
-
-	if (axes[2] > 0) {
-		map.find("name", "rs").element.style.left = `${268 + (axes[2] * 18)}px`;
-	} else if (axes[2] < 0) {
-		map.find("name", "rs").element.style.left = `${268 + (axes[2] * 18)}px`;
-	}
-	if (axes[3] > 0) {
-		map.find("name", "rs").element.style.top = `${20 + (axes[3] * 18)}px`;
-	} else if (axes[3] < 0) {
-		map.find("name", "rs").element.style.top = `${20 + (axes[3] * 18)}px`;
-	}
-}
-
 function loop() {
 	let gamepads = navigator.getGamepads();
 	if (gamepads[0] != undefined) {
 		let gp = gamepads[0];
-
-		checkButtons(gp.buttons, map);
-
-		checkSticks(gp.axes);
-
+		check.buttons(gp.buttons, map);
+		check.sticks(gp.axes, map, 23, 20, 268, 20);
 	}
-
 	window.requestAnimationFrame(loop);
 }
 
@@ -65,6 +37,5 @@ window.onload = function WindowLoad() {
 		};
 		map.set(index, obj);
 	}
-
 	window.requestAnimationFrame(loop);
 };
