@@ -4,7 +4,7 @@ const isDev = rq("electron-is-dev");
 const mappings = rq("./assets/js/util/mappings.json");
 const check = rq("./assets/js/util/check.js");
 const Collection = rq("./assets/js/util/Collection.js");
-rq("./assets/js/util/loadConfig.js")();
+rq("./assets/js/util/loadConfig.js").loadConfig();
 
 let map = new Collection();
 

@@ -7,6 +7,8 @@ const shell = require("electron").shell;
 const path = require("path");
 const url = require("url");
 const isDev = require("electron-is-dev");
+const rq = require("electron-require");
+let config = rq("./src/assets/js/util/loadConfig.js").getStore();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -30,7 +32,7 @@ function createWindow() {
 
 	// and load the index.html of the app.
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, "src/distplay.html"),
+		pathname: path.join(__dirname, `src/${config.get("Settings.selectedLayout")}.html`),
 		protocol: "file:",
 		slashes: true
 	}));
@@ -49,6 +51,7 @@ function createWindow() {
 			click() {
 				let currentURL = win.webContents.getURL();
 				let newPage = `distplay${(currentURL.includes("distance")) ? "" : "-distance"}`;
+				config.set("Settings.selectedLayout", newPage);
 				win.loadURL(url.format({
 					pathname: path.join(__dirname, `src/${newPage}.html`),
 					protocol: "file:",
@@ -71,9 +74,15 @@ function createWindow() {
 					width: 400,
 					height: 200
 				});
-				settingsWindow.on("closed", () => settingsWindow = null);
+				settingsWindow.on("closed", () => {
+					//TODO: Automatically apply settings to active layout page when settings window closes
+					settingsWindow = null;
+				});
 				settingsWindow.loadURL(modalPath);
 				settingsWindow.setMenu(null);
+				if (isDev) {
+					settingsWindow.webContents.openDevTools();
+				}
 				settingsWindow.show();
 			}
 		}, {

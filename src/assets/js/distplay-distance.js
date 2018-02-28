@@ -4,7 +4,7 @@ const isDev = rq("electron-is-dev");
 const mappings = rq("./assets/js/util/mappings.json");
 const check = rq("./assets/js/util/check.js");
 const Collection = rq("./assets/js/util/Collection.js");
-let config = rq("./assets/js/util/loadConfig.js")();
+let config = rq("./assets/js/util/loadConfig.js").loadConfig();
 
 let map = new Collection();
 
@@ -27,15 +27,16 @@ window.onload = function WindowLoad() {
 
 	for (let elt of allIDs) {
 		let index;
+		let bind = config.get(`Bindings.${elt.id}`);
 		if (elt.id.match(/^ls|rs$/i)) {
 			index = mappings[elt.id];
 		} else {
-			index = mappings[config.Bindings[elt.id]];
+			index = mappings[bind];
 		}
 		let obj = {
 			"id": index,
 			"name": elt.id,
-			"button": (config.Bindings[elt.id]) ? config.Bindings[elt.id] : elt.id,
+			"button": (bind) ? bind : elt.id,
 			"element": elt
 		};
 		map.set(index, obj);
