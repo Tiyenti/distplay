@@ -15,7 +15,9 @@ function createWindow() {
 	// Create the browser window.
 	win = new BrowserWindow({
 		width: 355,
-		height: 155
+		height: 155,
+		useContentSize: true,
+		icon: path.join(__dirname, "src/assets/images/favicon.png")
 		// width: 800,
 		// height: 600
 	});
