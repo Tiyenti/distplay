@@ -6,6 +6,7 @@ const {
 const shell = require("electron").shell;
 const path = require("path");
 const url = require("url");
+const isDev = require("electron-is-dev");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -13,13 +14,18 @@ let win;
 
 function createWindow() {
 	// Create the browser window.
+	let w = 355;
+	let h = 155;
+	if (isDev) {
+		w = 800;
+		h = 600;
+	}
 	win = new BrowserWindow({
-		width: 355,
-		height: 155,
+		icon: path.join(__dirname, "src/assets/images/favicon.png"),
 		useContentSize: true,
-		icon: path.join(__dirname, "src/assets/images/favicon.png")
-		// width: 800,
-		// height: 600
+		backgroundColor: "#000",
+		width: w,
+		height: h
 	});
 
 	// and load the index.html of the app.
@@ -30,8 +36,9 @@ function createWindow() {
 	}));
 
 	// Open the DevTools.
-	//win.webContents.openDevTools();
-
+	if (isDev) {
+		win.webContents.openDevTools();
+	}
 	// Emitted when the window is closed.
 	win.on("closed", () => win = null);
 
@@ -58,6 +65,9 @@ function createWindow() {
 				});
 				let settingsWindow = new BrowserWindow({
 					alwaysOnTop: true,
+					icon: path.join(__dirname, "src/assets/images/favicon.png"),
+					useContentSize: true,
+					backgroundColor: "#000",
 					width: 400,
 					height: 200
 				});

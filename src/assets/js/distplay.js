@@ -1,5 +1,6 @@
 const remote = require("electron").remote;
 const rq = require("electron-require");
+const isDev = rq("electron-is-dev");
 const mappings = rq("./assets/js/util/mappings.json");
 const check = rq("./assets/js/util/check.js");
 const Collection = rq("./assets/js/util/Collection.js");
@@ -19,7 +20,9 @@ function loop() {
 
 window.onload = function WindowLoad() {
 	let win = remote.getCurrentWindow();
-	win.setContentSize(355, 155);
+	if (!isDev) {
+		win.setContentSize(355, 155);
+	}
 	let allIDs = document.querySelectorAll("*[id]");
 
 	for (let elt of allIDs) {
