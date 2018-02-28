@@ -32,7 +32,7 @@ function createWindow() {
 
 	// and load the index.html of the app.
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, `src/${config.get("Settings.selectedLayout")}.html`),
+		pathname: path.join(__dirname, `src/${config.get("Settings.selectedLayout", "distplay")}.html`),
 		protocol: "file:",
 		slashes: true
 	}));
