@@ -9,24 +9,33 @@ function rmPressed(ele) {
 	(ele.name.match(/^ls|rs$/i)) ? ele.element.classList.remove("stickpressed"): ele.element.classList.remove("pressed");
 }
 
-function checkButtons(buttons, map, dpad) {
+function dpadOpposite(ele, map) {
+	let opposite;
+	switch (ele.name) {
+		case "dup":
+			opposite = map.find("name", "ddown");
+			break;
+		case "ddown":
+			opposite = map.find("name", "dup");
+			break;
+		case "dleft":
+			opposite = map.find("name", "dright");
+			break;
+		case "dright":
+			opposite = map.find("name", "dleft");
+			break;
+	}
+	return opposite;
+}
+
+function checkButtons(buttons, map) {
 	for (let i = 0; i < Object.keys(mappings).length; i++) {
 		let ele = map.get(i);
 		if (ele && buttons[i].pressed) {
 			setPressed(ele);
-			// --- Check dpad opposites ---
-			if (dpad && dpad === true) {
-				if (i === 12) {
-					setPressed(map.find("name", "ddown"));
-				} else if (i === 13) {
-					setPressed(map.find("name", "dup"));
-				} else if (i === 14) {
-					setPressed(map.find("name", "dright"));
-				} else if (i === 15) {
-					setPressed(map.find("name", "dleft"));
-				}
+			if (ele.name.match(/^dup|ddown|dleft|dright$/i)) {
+				rmPressed(dpadOpposite(ele, map));
 			}
-			// ------
 		} else if (ele) {
 			rmPressed(ele);
 		}
@@ -40,7 +49,6 @@ function checkSticks(axes, map, ls1, ls2, rs1, rs2) {
 	if (axes[1] !== 0) {
 		map.find("name", "ls").element.style.top = `${ls2 + (axes[1] * 18)}px`;
 	}
-
 	if (axes[2] !== 0) {
 		map.find("name", "rs").element.style.left = `${rs1 + (axes[2] * 18)}px`;
 	}
