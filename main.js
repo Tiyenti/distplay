@@ -6,30 +6,56 @@ const {
 const shell = require("electron").shell;
 const path = require("path");
 const url = require("url");
+const isDev = require("electron-is-dev");
+const rq = require("electron-require");
+let config = rq("./src/assets/js/util/loadConfig.js").getStore();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+let settingsWindow;
+
+function loadURL(samePage) {
+	let currentURL = win.webContents.getURL();
+	let newPage = config.get("Settings.selectedLayout", "distplay");
+	if (!samePage) {
+		newPage = `distplay${(currentURL.includes("distance")) ? "" : "-distance"}`;
+	}
+	config.set("Settings.selectedLayout", newPage);
+	win.loadURL(url.format({
+		pathname: path.join(__dirname, `src/${newPage}.html`),
+		protocol: "file:",
+		slashes: true
+	}));
+}
 
 function createWindow() {
 	// Create the browser window.
+	let w = 355;
+	let h = 155;
+	if (isDev) {
+		w = 800;
+		h = 600;
+	}
 	win = new BrowserWindow({
-		width: 355,
-		height: 155
-		// width: 800,
-		// height: 600
+		icon: path.join(__dirname, "src/assets/images/favicon.png"),
+		useContentSize: true,
+		backgroundColor: "#000",
+		width: w,
+		height: h
 	});
 
 	// and load the index.html of the app.
 	win.loadURL(url.format({
-		pathname: path.join(__dirname, "src/distplay.html"),
+		pathname: path.join(__dirname, `src/${config.get("Settings.selectedLayout", "distplay")}.html`),
 		protocol: "file:",
 		slashes: true
 	}));
 
 	// Open the DevTools.
-	//win.webContents.openDevTools();
-
+	if (isDev) {
+		win.webContents.openDevTools();
+	}
 	// Emitted when the window is closed.
 	win.on("closed", () => win = null);
 
@@ -38,13 +64,7 @@ function createWindow() {
 		submenu: [{
 			label: "Switch Layout",
 			click() {
-				let currentURL = win.webContents.getURL();
-				let newPage = `distplay${(currentURL.includes("distance")) ? "" : "-distance"}`;
-				win.loadURL(url.format({
-					pathname: path.join(__dirname, `src/${newPage}.html`),
-					protocol: "file:",
-					slashes: true
-				}));
+				loadURL();
 			}
 		}, {
 			label: "Settings",
@@ -54,14 +74,24 @@ function createWindow() {
 					protocol: "file:",
 					slashes: true
 				});
-				let settingsWindow = new BrowserWindow({
+				settingsWindow = new BrowserWindow({
 					alwaysOnTop: true,
+					icon: path.join(__dirname, "src/assets/images/favicon.png"),
+					useContentSize: true,
+					backgroundColor: "#000",
 					width: 400,
 					height: 200
 				});
-				settingsWindow.on("closed", () => settingsWindow = null);
+				settingsWindow.on("closed", () => {
+					//TODO: Automatically apply settings to active layout page when settings window closes
+					loadURL(true);
+					settingsWindow = null;
+				});
 				settingsWindow.loadURL(modalPath);
 				settingsWindow.setMenu(null);
+				if (isDev) {
+					settingsWindow.webContents.openDevTools();
+				}
 				settingsWindow.show();
 			}
 		}, {

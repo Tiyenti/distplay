@@ -1,36 +1,30 @@
 # distplay
 ![distplay](/img/distplay.png?raw=true)
 
-A basic controller input display. Made this because I couldn't find any
-Linux controller input displays. I pretty much made this only for myself,
-so I made no attempt to make this universally compatible with every system
-ever. It works for me, but it may not work for you - the HTML5 Gamepad API
-is kind of inconsistent. It should technically "work" on any system,
-but it might not work *properly*.
+A basic controller input display. Made this because I couldn't find any Linux controller input displays. I pretty much made this only for myself, so I made no attempt to make this universally compatible with every system ever. It works for me, but it may not work for you - the HTML5 Gamepad API is kind of inconsistent. It should technically "work" on any system, but it might not work *properly*.
 
-This input was previously exlusively designed to work with Distance, but
-I decided to make it work for anything with an Xbox controller layout.
+This input was previously exclusively designed to work with Distance, but I decided to make it work for anything with an Xbox controller layout.
 
 The Distance version is still available though.
 
 ![distplay-distance](/img/distplay-distance.png?raw=true)
 
-## Using the Display
-Because I have no idea how to package an Electron app and I'm
-too lazy to learn, run the display with Electron manually:
+## Using the display
+Grab the latest release from [@California/distplay/releases](https://github.com/Californ1a/distplay/releases).
 
-`electron ./distplay.html`
+## Packing from source
+In order to run it from source (required for Mac currently):
+- Install [Node.js](https://nodejs.org/)
+- Clone the repo by hitting the `Clone or download` button in the top right corner (and unzip it if you downloaded it as a zip)
+- Within the terminal, browse to the folder you downloaded it to (in Windows, shift+right click in an empty area of the folder and click `Open PowerShell window here`)
+- Type `npm install`
+- Type `npm start` (if for some reason distplay appears with a white background at the wrong window size and doesn't work or crashes, run `npm install` again)
 
-(or `electron ./distplay-distance.html` for the Distance version)
+This *will*, however, start distplay in developer mode with a larger window and DevTools open. You will either need to edit the various \*.js files, look for `inDev`, and remove those checks, or you can do the following to build it yourself:
+- In terminal, type `npm run pack:curr`
 
-Add a window capture source in OBS to capture the display's window, and
-set the colour transparency key to black.
+This will package the app as given in the releases, for your current platform. It will tell you where the new folder is located when it finishes packaging.
 
-You can run this in a web browser instead of using Electron, though
-you'll have to modify the script to remove the stuff that sets the
-window size, and also the require statement required to do that,
-otherwise you'll get errors.
-  
 ## Display mapping
 The display for the display mapped by default as:
 
@@ -43,7 +37,7 @@ The display for the display mapped by default as:
 | Left Bumper      | buttons[4]      |
 | Right Bumper     | buttons[5]      |
 | Right Trigger    | buttons[7]      |
-| Left Trigger     | buttons[6]       |
+| Left Trigger     | buttons[6]      |
 | Back/Select      | buttons[8]      |
 | Forward/Start    | buttons[9]      |
 | LS Click         | buttons[10]     |
@@ -57,12 +51,6 @@ The display for the display mapped by default as:
 | RS Horizontal    | axes[2]         |
 | RS Vertical      | axes[3]         |
 
-The Distance display is set up to reflect the default bindings
-for the game, albliet with a right stick.
+The Distance display is set up to reflect the default bindings for the game, albeit with a right stick.
 
-Because the HTML5 Gamepad API is inconsistent between different
-browsers and operating systems and I made no attempt to make things
-universally compatible, you may need to edit the JS yourself to get
-things to work properly - you'll also need to do this if your
-ingame control setup differs.
-
+Because the HTML5 Gamepad API is inconsistent between different browsers and operating systems and I made no attempt to make things universally compatible, you may need to edit the JS yourself to get things to work properly - you'll also need to do this if your in-game control setup differs.
