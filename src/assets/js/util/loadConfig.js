@@ -40,24 +40,6 @@ function setMissingDefaults() {
 			store.set(`Bindings.${elt}`, Bindings[elt]);
 		}
 	}
-	// if (!store.has("Bindings.jump")) {
-	// 	store.set("Bindings.jump", "x");
-	// }
-	// if (!store.has("Bindings.reset")) {
-	// 	store.set("Bindings.reset", "select");
-	// }
-	// if (!store.has("Bindings.grip")) {
-	// 	store.set("Bindings.grip", "lb");
-	// }
-	// if (!store.has("Bindings.boost")) {
-	// 	store.set("Bindings.boost", "rb");
-	// }
-	// if (!store.has("Bindings.brake")) {
-	// 	store.set("Bindings.brake", "lt");
-	// }
-	// if (!store.has("Bindings.accel")) {
-	// 	store.set("Bindings.accel", "rt");
-	// }
 }
 
 function loadConfig() {
@@ -72,5 +54,6 @@ function getStore() {
 
 module.exports = {
 	loadConfig,
-	getStore
+	getStore,
+	setAllDefaults
 };

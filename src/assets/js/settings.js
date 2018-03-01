@@ -1,10 +1,16 @@
 const rq = require("electron-require");
+let config = rq("./assets/js/util/loadConfig.js");
+
 const configLink = document.getElementById("configLink");
-let config = rq("./assets/js/util/loadConfig.js").getStore();
+const restoreDefaults = document.getElementById("restoreDefaults");
 
 configLink.addEventListener("click", () => {
-	config.openInEditor();
+	config.getStore().openInEditor();
 	// config.onDidChange("Bindings.jump", (newValue, oldValue) => {
 	// 	console.log("config Bindings.jump changed to: " + newValue + ", from: " + oldValue);
 	// });
+});
+
+restoreDefaults.addEventListener("click", () => {
+	config.setAllDefaults();
 });

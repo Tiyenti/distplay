@@ -13,6 +13,21 @@ let config = rq("./src/assets/js/util/loadConfig.js").getStore();
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
+let settingsWindow;
+
+function loadURL(samePage) {
+	let currentURL = win.webContents.getURL();
+	let newPage = config.get("Settings.selectedLayout", "distplay");
+	if (!samePage) {
+		newPage = `distplay${(currentURL.includes("distance")) ? "" : "-distance"}`;
+	}
+	config.set("Settings.selectedLayout", newPage);
+	win.loadURL(url.format({
+		pathname: path.join(__dirname, `src/${newPage}.html`),
+		protocol: "file:",
+		slashes: true
+	}));
+}
 
 function createWindow() {
 	// Create the browser window.
@@ -49,14 +64,7 @@ function createWindow() {
 		submenu: [{
 			label: "Switch Layout",
 			click() {
-				let currentURL = win.webContents.getURL();
-				let newPage = `distplay${(currentURL.includes("distance")) ? "" : "-distance"}`;
-				config.set("Settings.selectedLayout", newPage);
-				win.loadURL(url.format({
-					pathname: path.join(__dirname, `src/${newPage}.html`),
-					protocol: "file:",
-					slashes: true
-				}));
+				loadURL();
 			}
 		}, {
 			label: "Settings",
@@ -66,7 +74,7 @@ function createWindow() {
 					protocol: "file:",
 					slashes: true
 				});
-				let settingsWindow = new BrowserWindow({
+				settingsWindow = new BrowserWindow({
 					alwaysOnTop: true,
 					icon: path.join(__dirname, "src/assets/images/favicon.png"),
 					useContentSize: true,
@@ -76,6 +84,7 @@ function createWindow() {
 				});
 				settingsWindow.on("closed", () => {
 					//TODO: Automatically apply settings to active layout page when settings window closes
+					loadURL(true);
 					settingsWindow = null;
 				});
 				settingsWindow.loadURL(modalPath);
