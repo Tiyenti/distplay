@@ -15,15 +15,13 @@ Grab the latest release from [@California/distplay/releases](https://github.com/
 ## Packing from source
 In order to run it from source (required for Mac currently):
 - Install [Node.js](https://nodejs.org/)
-- Open terminal (Windows cmd or powershell, Mac/Linux terminal) and type `npm install electron -g`
 - Clone the repo by hitting the `Clone or download` button in the top right corner (and unzip it if you downloaded it as a zip)
 - Within the terminal, browse to the folder you downloaded it to (in Windows, shift+right click in an empty area of the folder and click `Open PowerShell window here`)
 - Type `npm install`
 - Type `npm start` (if for some reason distplay appears with a white background at the wrong window size and doesn't work or crashes, run `npm install` again)
 
 This *will*, however, start distplay in developer mode with a larger window and DevTools open. You will either need to edit the various \*.js files, look for `inDev`, and remove those checks, or you can do the following to build it yourself:
-- In terminal, type `npm install electron-packager -g`
-- Then type, within the distplay directory, `electron-packager ./`
+- In terminal, type `npm run pack:curr`
 
 This will package the app as given in the releases, for your current platform. It will tell you where the new folder is located when it finishes packaging.
 
