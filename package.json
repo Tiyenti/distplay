@@ -1,12 +1,12 @@
 {
   "name": "distplay",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "input display",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "pack": "build --dir",
-		"pack:curr": "electron-packager ./ --overwrite --ignore=build --out=dist",
+    "pack:curr": "electron-packager ./ --overwrite --ignore=build --out=dist",
     "pack:win32": "electron-packager ./ --platform=win32 --arch=ia32 --overwrite --ignore=build --out=dist --icon=build/icon.ico",
     "pack:win64": "electron-packager ./ --platform=win32 --arch=x64 --overwrite --ignore=build --out=dist --icon=build/icon.ico",
     "pack:linux": "electron-packager ./ --platform=linux --arch=x64 --overwrite --ignore=build --out=dist --icon=build/icon.png",
