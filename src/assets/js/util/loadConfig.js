@@ -20,7 +20,7 @@ function setAllDefaults() {
 	setAllBindings();
 	store.set({
 		"Settings": {
-			"backgroundColor": "#000",
+			"backgroundColor": "#000000",
 			"selectedLayout": "distplay"
 		}
 	});
@@ -44,7 +44,7 @@ function setMissingDefaults() {
 
 function loadConfig() {
 	setMissingDefaults();
-	document.body.style.backgroundColor = store.get("Settings.backgroundColor", "#000");
+	document.body.style.backgroundColor = store.get("Settings.backgroundColor", "#000000");
 	return store;
 }
 
