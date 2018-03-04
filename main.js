@@ -57,7 +57,13 @@ function createWindow() {
 		win.webContents.openDevTools();
 	}
 	// Emitted when the window is closed.
-	win.on("closed", () => win = null);
+	win.on("close", () => {
+		if (settingsWindow) {
+			settingsWindow.close();
+		}
+		settingsWindow = null;
+		win = null;
+	});
 
 	let menu = Menu.buildFromTemplate([{
 		label: "Menu",
@@ -74,17 +80,26 @@ function createWindow() {
 					protocol: "file:",
 					slashes: true
 				});
+				let wi = 400;
+				let he = 380;
+				if (isDev) {
+					wi = 1280;
+					he = 720;
+				}
 				settingsWindow = new BrowserWindow({
 					alwaysOnTop: true,
 					icon: path.join(__dirname, "src/assets/images/favicon.png"),
 					useContentSize: true,
-					backgroundColor: "#000",
-					width: 400,
-					height: 200
+					frame: false,
+					transparent: true,
+					width: wi,
+					height: he
 				});
 				settingsWindow.on("closed", () => {
-					//TODO: Automatically apply settings to active layout page when settings window closes
-					loadURL(true);
+					//Automatically refresh active page to apply new config when settings window closes
+					if (win) {
+						loadURL(true);
+					}
 					settingsWindow = null;
 				});
 				settingsWindow.loadURL(modalPath);
