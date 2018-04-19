@@ -14,6 +14,7 @@ let config = rq("./src/assets/js/util/loadConfig.js").getStore();
 // be closed automatically when the JavaScript object is garbage collected.
 let win;
 let settingsWindow;
+app.disableHardwareAcceleration();
 
 function loadURL(samePage) {
 	let currentURL = win.webContents.getURL();
