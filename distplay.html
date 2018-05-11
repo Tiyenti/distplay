@@ -87,15 +87,31 @@
         </style>
     </head>
     <body>
+        <!-- Sticks -->
+        <div class="stickback" style="position: absolute; top: 40px; left: 10px"></div>
+        <div id="ls" class="stick" style="position: absolute; top: 52px; left: 23px"></div>
+        <div class="stickback" style="position: absolute; top: 40px; left: 265px"></div>
+        <div id="rs" class="stick" style="position: absolute; top: 52px; left: 278px"></div>
+        <!-- Bumpers and triggers -->
+        <div id="lt" class="unpressed button" style="position: absolute; top: 12px; left: 10px">LT</div>
+        <div id="rt" class="unpressed button" style="position: absolute; top: 12px; left: 275px">RT</div>
+        <div id="lb" class="unpressed bumper" style="position: absolute; top: 12px; left: 85px">LB</div>
+        <div id="rb" class="unpressed bumper" style="position: absolute; top: 12px; left: 180px">RB</div>
+        <!-- Dpad -->
+        <div id="dup" class="unpressed dpadbutton" style="position: absolute; top: 40px; left: 125px"></div>
+        <div id="dleft" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 100px"></div>
+        <div id="dright" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 150px"></div>
+        <div id="ddown" class="unpressed dpadbutton" style="position: absolute; top: 89px; left: 125px"></div>
+        <div id="dcenter" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 125px"></div>
+        <!-- Face buttons  -->
+        <div id="y" class="unpressed facebutton" style="position: absolute; top: 40px; left: 210px">Y</div>
+        <div id="x" class="unpressed facebutton" style="position: absolute; top: 64px; left: 185px">X</div>
+        <div id="b" class="unpressed facebutton" style="position: absolute; top: 64px; left: 235px">B</div>
+        <div id="a" class="unpressed facebutton" style="position: absolute; top: 89px; left: 210px">A</div>
+        <!-- Misc buttons -->
+        <div id="select" class="unpressed bumper" style="position: absolute; top: 120px; left: 85px">&lt;</div>
+        <div id="start" class="unpressed bumper" style="position: absolute; top: 120px; left: 180px">&gt;</div>
         <script>
-         const remote = require('electron').remote;
-
-         window.onload = function WindowLoad(event) {
-             var win = remote.getCurrentWindow();
-             win.setSize(355, 150)
-             loop();
-         }
-
          function loop() {
              rt = document.getElementById('rt');
              lt = document.getElementById('lt');
@@ -260,66 +276,47 @@
                          rs.style.top = 52 + (gp.axes[3] * 18) + 'px'
                      }
 
-                 if (gp.buttons[12].pressed)
-                     {
-                         dup.className = "pressed dpadbutton"
-                         ddown.className = "unpressed dpadbutton"
-                     }
-                 else if (gp.buttons[13].pressed)
-                     {
-                         dup.className = "unpressed dpadbutton"
-                         ddown.className = "pressed dpadbutton"
-                     }
-                 else
-                     {
-                         dup.className = "unpressed dpadbutton"
-                         ddown.className = "unpressed dpadbutton"
-                     }
+                if (gp.buttons[12].pressed)
+                {
+                    dup.className = "pressed dpadbutton"
+                }
+                else
+                {
+                    dup.className = "unpressed dpadbutton"
+                }
+                
+                if (gp.buttons[13].pressed)
+                {
+                    ddown.className = "pressed dpadbutton"
+                }
+                else
+                {
+                    ddown.className = "unpressed dpadbutton"
+                }
 
-                 if (gp.buttons[14].pressed)
-                     {
-                         dleft.className = "pressed dpadbutton"
-                         dright.className = "unpressed dpadbutton"
-                     }
-                 else if (gp.buttons[15].pressed)
-                     {
-                         dleft.className = "unpressed dpadbutton"
-                         dright.className = "pressed dpadbutton"
-                     }
-                 else
-                     {
-                         dleft.className = "unpressed dpadbutton"
-                         dright.className = "unpressed dpadbutton"
-                     }
+                if (gp.buttons[14].pressed)
+                {
+                    dleft.className = "pressed dpadbutton"
+                }
+                else
+                {
+                    dleft.className = "unpressed dpadbutton"
+                }
+                
+                if (gp.buttons[15].pressed)
+                {
+                    dright.className = "pressed dpadbutton"
+                }
+                else
+                {
+                    dright.className = "unpressed dpadbutton"
+                }
              }
 
              start = requestAnimationFrame(loop);
          }
-        </script>
 
-        <!-- Sticks -->
-        <div class="stickback" style="position: absolute; top: 40px; left: 10px"></div>
-        <div id="ls" class="stick" style="position: absolute; top: 52px; left: 23px"></div>
-        <div class="stickback" style="position: absolute; top: 40px; left: 265px"></div>
-        <div id="rs" class="stick" style="position: absolute; top: 52px; left: 278px"></div>
-        <!-- Bumpers and triggers -->
-        <div id="lt" class="unpressed button" style="position: absolute; top: 12px; left: 10px">LT</div>
-        <div id="rt" class="unpressed button" style="position: absolute; top: 12px; left: 275px">RT</div>
-        <div id="lb" class="unpressed bumper" style="position: absolute; top: 12px; left: 85px">LB</div>
-        <div id="rb" class="unpressed bumper" style="position: absolute; top: 12px; left: 180px">RB</div>
-        <!-- Dpad -->
-        <div id="dup" class="unpressed dpadbutton" style="position: absolute; top: 40px; left: 125px"></div>
-        <div id="dleft" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 100px"></div>
-        <div id="dright" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 150px"></div>
-        <div id="ddown" class="unpressed dpadbutton" style="position: absolute; top: 89px; left: 125px"></div>
-        <div id="dcenter" class="unpressed dpadbutton" style="position: absolute; top: 64px; left: 125px"></div>
-        <!-- Face buttons  -->
-        <div id="y" class="unpressed facebutton" style="position: absolute; top: 40px; left: 210px">Y</div>
-        <div id="x" class="unpressed facebutton" style="position: absolute; top: 64px; left: 185px">X</div>
-        <div id="b" class="unpressed facebutton" style="position: absolute; top: 64px; left: 235px">B</div>
-        <div id="a" class="unpressed facebutton" style="position: absolute; top: 89px; left: 210px">A</div>
-        <!-- Misc buttons -->
-        <div id="select" class="unpressed bumper" style="position: absolute; top: 120px; left: 85px">&lt;</div>
-        <div id="start" class="unpressed bumper" style="position: absolute; top: 120px; left: 180px">&gt;</div>
+         loop();
+        </script>
     </body>
 </html>

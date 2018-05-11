@@ -1,35 +1,13 @@
 # distplay
-![distplay](/img/distplay.png?raw=true)
 
-A basic controller input display. Made this because I couldn't find any
-Linux controller input displays. I pretty much made this only for myself,
-so I made no attempt to make this universally compatible with every system
-ever. It works for me, but it may not work for you - the HTML5 Gamepad API
-is kind of inconsistent. It should technically "work" on any system,
-but it might not work *properly*.
-
-This input was previously exlusively designed to work with Distance, but
-I decided to make it work for anything with an Xbox controller layout.
-
-The Distance version is still available though.
-
-![distplay-distance](/img/distplay-distance.png?raw=true)
+This is the web version of distplay. By "web version" I mean "my old code before my friend Cali
+updated it, just updated, and no longer requires electron". A better system for a web version of
+this would probably be ideal, but there's not really any frontend difference to just using my old
+code, so... ¯\\\_(ツ)_/¯
 
 ## Using the Display
-Because I have no idea how to package an Electron app and I'm
-too lazy to learn, run the display with Electron manually:
-
-`electron ./distplay.html`
-
-(or `electron ./distplay-distance.html` for the Distance version)
-
-Add a window capture source in OBS to capture the display's window, and
-set the colour transparency key to black.
-
-You can run this in a web browser instead of using Electron, though
-you'll have to modify the script to remove the stuff that sets the
-window size, and also the require statement required to do that,
-otherwise you'll get errors.
+The web version is available at: [https://tntmatthew.github.io/distplay/distplay.html]  
+And the Distance variation: [https://tntmatthew.github.io/distplay/distplay-distance.html]
   
 ## Display mapping
 The display for the display mapped by default as:
@@ -43,7 +21,7 @@ The display for the display mapped by default as:
 | Left Bumper      | buttons[4]      |
 | Right Bumper     | buttons[5]      |
 | Right Trigger    | buttons[7]      |
-| Left Trigger     | buttons[6]       |
+| Left Trigger     | buttons[6]      |
 | Back/Select      | buttons[8]      |
 | Forward/Start    | buttons[9]      |
 | LS Click         | buttons[10]     |
@@ -57,12 +35,4 @@ The display for the display mapped by default as:
 | RS Horizontal    | axes[2]         |
 | RS Vertical      | axes[3]         |
 
-The Distance display is set up to reflect the default bindings
-for the game, albliet with a right stick.
-
-Because the HTML5 Gamepad API is inconsistent between different
-browsers and operating systems and I made no attempt to make things
-universally compatible, you may need to edit the JS yourself to get
-things to work properly - you'll also need to do this if your
-ingame control setup differs.
-
+The Distance display is set up to reflect the default bindings for the game, albeit with a right stick.

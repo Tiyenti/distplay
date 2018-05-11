@@ -52,15 +52,17 @@
         </style>
     </head>
     <body>
+        <div class="stickback" style="position: absolute; top: 8px; left: 10px"></div>
+        <div id="ls" class="stick" style="position: absolute; top: 20px; left: 23px"></div>
+        <div id="brake" class="unpressed button" style="position: absolute; top: 12px; left: 100px">BRAKE</div>
+        <div id="grip" class="unpressed button" style="position: absolute; top: 37px; left: 100px">GRIP</div>
+        <div id="reset" class="unpressed button" style="position: absolute; top: 62px; left: 100px">RESET</div>
+        <div id="accel" class="unpressed button" style="position: absolute; top: 12px; left: 175px">ACCEL</div>
+        <div id="boost" class="unpressed button" style="position: absolute; top: 37px; left: 175px">BOOST</div>
+        <div id="jump" class="unpressed button" style="position: absolute; top: 62px; left: 175px">JUMP</div>
+        <div class="stickback" style="position: absolute; top: 8px; left: 255px"></div>
+        <div id="rs" class="stick" style="position: absolute; top: 20px; left: 268px"></div>
         <script>
-         const remote = require('electron').remote;
-
-         window.onload = function WindowLoad(event) {
-             var win = remote.getCurrentWindow();
-             win.setSize(345, 95)
-             loop();
-         }
-
          function loop() {
              jump = document.getElementById('jump');
              grip = document.getElementById('grip');
@@ -93,7 +95,7 @@
                      grip.className = "unpressed button";
                  }
 
-                 if (gp.buttons[6].pressed)
+                 if (gp.buttons[8].pressed)
                  {
                      reset.className = "pressed button";
                  }
@@ -111,7 +113,7 @@
                      boost.className = "unpressed button";
                  }
 
-                 if (gp.axes[5] > -1)
+                 if (gp.buttons[7].pressed)
                  {
                      accel.className = "pressed button";
                  }
@@ -120,7 +122,7 @@
                      accel.className = "unpressed button";
                  }
 
-                 if (gp.axes[2] > -1)
+                 if (gp.buttons[6].pressed)
                  {
                      brake.className = "pressed button";
                  }
@@ -146,37 +148,28 @@
                      ls.style.top = 20 + (gp.axes[1] * 18) + 'px'
                  }
 
+                 if (gp.axes[2] > 0)
+                 {
+                     rs.style.left = 268 + (gp.axes[2] * 18) + 'px'
+                 }
+                 else if (gp.axes[2] < 0)
+                 {
+                     rs.style.left = 268 + (gp.axes[2] * 18) + 'px'
+                 }
                  if (gp.axes[3] > 0)
                  {
-                     rs.style.left = 268 + (gp.axes[3] * 18) + 'px'
+                     rs.style.top = 20 + (gp.axes[3] * 18) + 'px'
                  }
                  else if (gp.axes[3] < 0)
                  {
-                     rs.style.left = 268 + (gp.axes[3] * 18) + 'px'
-                 }
-                 if (gp.axes[4] > 0)
-                 {
-                     rs.style.top = 20 + (gp.axes[4] * 18) + 'px'
-                 }
-                 else if (gp.axes[4] < 0)
-                 {
-                     rs.style.top = 20 + (gp.axes[4] * 18) + 'px'
+                     rs.style.top = 20 + (gp.axes[3] * 18) + 'px'
                  }
              }
 
              start = requestAnimationFrame(loop);
          }
-        </script>
 
-        <div class="stickback" style="position: absolute; top: 8px; left: 10px"></div>
-        <div id="ls" class="stick" style="position: absolute; top: 20px; left: 23px"></div>
-        <div id="brake" class="unpressed button" style="position: absolute; top: 12px; left: 100px">BRAKE</div>
-        <div id="grip" class="unpressed button" style="position: absolute; top: 37px; left: 100px">GRIP</div>
-        <div id="reset" class="unpressed button" style="position: absolute; top: 62px; left: 100px">RESET</div>
-        <div id="accel" class="unpressed button" style="position: absolute; top: 12px; left: 175px">ACCEL</div>
-        <div id="boost" class="unpressed button" style="position: absolute; top: 37px; left: 175px">BOOST</div>
-        <div id="jump" class="unpressed button" style="position: absolute; top: 62px; left: 175px">JUMP</div>
-        <div class="stickback" style="position: absolute; top: 8px; left: 255px"></div>
-        <div id="rs" class="stick" style="position: absolute; top: 20px; left: 268px"></div>
+         loop();
+        </script>
     </body>
 </html>
