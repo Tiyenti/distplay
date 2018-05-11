@@ -12,6 +12,9 @@ The Distance version is still available though.
 ## Using the display
 Grab the latest release from [@California/distplay/releases](https://github.com/Californ1a/distplay/releases).
 
+If you don't feel like downloading anything, there's also a web version available, which you can access by clicking
+[this link](tntmatthew.github.io/distplay/distplay.html) (or [this one](tntmatthew.github.io/distplay/distplay-distance.html) for the Distance variation)
+
 ## Packing from source
 In order to run it from source (required for Mac currently):
 - Install [Node.js](https://nodejs.org/)
