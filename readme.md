@@ -10,7 +10,7 @@ The Distance version is still available though.
 ![distplay-distance](/img/distplay-distance.png?raw=true)
 
 ## Using the display
-Grab the latest release from [@California/distplay/releases](https://github.com/Californ1a/distplay/releases).
+Grab the latest release from [the releases page](https://github.com/TntMatthew/distplay/releases).
 
 If you don't feel like downloading anything, there's also a web version available, which you can access by clicking
 [this link](https://tntmatthew.github.io/distplay/distplay.html) (or [this one](https://tntmatthew.github.io/distplay/distplay-distance.html) for the Distance variation)
