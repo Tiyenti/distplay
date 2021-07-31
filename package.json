@@ -31,7 +31,7 @@
 	"homepage": "https://github.com/TntMatthew/distplay#readme",
 	"devDependencies": {
 		"7zip": "0.0.6",
-		"electron": "^1.8.3",
+		"electron": "^9.4.0",
 		"electron-builder": "^20.1.1",
 		"electron-packager": "^11.0.1"
 	},
