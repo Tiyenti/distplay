@@ -1,3 +1,6 @@
+> **This repository is no longer actively maintained.**
+> Please see [https://github.com/Californ1a/distplay](Californ1a/distplay) for an updated and maintained fork.
+
 # distplay
 ![distplay](/img/distplay.png?raw=true)
 
